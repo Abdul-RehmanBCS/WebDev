@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+<body>
+    
+    <p>Abdul-Rehman</p>
+    <!-- <p>Abdul-Rehman</p>
+    <p>Abdul-Rehman</p>
+    <p>Abdul-Rehman</p> -->
+</body>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // $("p").click(function(){
+        //     $(this).hide()
+        // })
+        
+        // $("p").dblclick(function(){
+        //     $(this).hide()
+        // })
+
+        // $("p").mouseenter(function(){
+        //     alert("You entered P")
+        // })
+
+        // $("p").mouseleave(function(){
+        //     alert("You leave P")
+        // })
+        
+        $("p").hover(function(){
+            alert("You entered P")
+        },
+        function(){
+            alert("You leave P")
+        }
+    )
+
+        
+    })
+</script>
+
+</html>
