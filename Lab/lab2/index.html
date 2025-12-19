@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merry White — Portfolio / Landing</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for small icons -->
+  <script src="https://kit.fontawesome.com/a2e0f6e3b8.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ---------------------------------------------
+       Color system & base layout
+       --------------------------------------------- */
+    :root{
+      --accent:#a8653b;         /* warm brown / highlight */
+      --accent-dark:#7f4527;    /* deeper brown */
+      --muted:#bfaea0;         /* light warm beige */
+      --bg:#f6f4f2;            /* page background */
+      --panel:#ffffff;         /* white panels */
+      --text:#3b3b3b;          /* main text */
+      --subtext:#777777;       /* secondary text */
+      --glass: rgba(255,255,255,0.85);
+      --max-width:1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: 'Open Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:var(--text);
+      background: linear-gradient(180deg, #fbfaf9 0%, var(--bg) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
+
+    a{color:inherit; text-decoration:none}
+
+    .container{max-width:var(--max-width); margin:0 auto; padding:0 22px}
+
+    /* ---------------------------------------------
+       Header / Navigation
+       --------------------------------------------- */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(4px);
+      background: rgba(255,255,255,0.6);
+      border-bottom:1px solid rgba(0,0,0,0.04);
+    }
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; height:72px;}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand .logo{display:inline-block;width:44px;height:28px;border-radius:4px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif}
+    nav ul{display:flex;gap:22px;align-items:center;margin:0;padding:0;list-style:none}
+    nav a{font-size:13px;letter-spacing:1px;padding:10px 6px;color:var(--subtext)}
+    nav a.active{color:var(--accent-dark);border-bottom:3px solid var(--accent);padding-bottom:7px}
+    .cta{background:var(--accent-dark);color:white;padding:9px 14px;border-radius:3px;font-weight:600}
+
+    /* ---------------------------------------------
+       HERO
+       --------------------------------------------- */
+    .hero{
+      padding:48px 0 28px 0;
+      position:relative;
+      overflow:visible;
+    }
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center}
+    .hero-left{
+      padding:40px 0 40px 0;
+    }
+    .eyebrow{font-weight:700;color:var(--accent-dark);letter-spacing:3px;font-family:'Montserrat',sans-serif;font-size:12px}
+    .hero-title{font-family:'Montserrat',sans-serif;font-size:44px;line-height:1.03;color:var(--accent-dark);margin:18px 0}
+    .hero-sub{color:var(--subtext);max-width:560px}
+    .btn{display:inline-block;margin-top:18px;padding:10px 14px;border-radius:3px;background:#111;color:#fff;font-weight:600}
+
+    .hero-right{position:relative}
+    .hero-photo{width:100%;height:auto;border-radius:6px;box-shadow: 0 10px 30px rgba(0,0,0,0.12);}
+    .floating-cta{position:absolute;right:28px;top:60%;transform:translateY(-50%);background:var(--accent);color:white;padding:8px 14px;border-radius:6px;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+
+    /* Decorative horizontal rule under hero title */
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,0,0,0.06),transparent);margin:30px 0}
+
+    /* ---------------------------------------------
+       SUMMARY / ABOUT
+       --------------------------------------------- */
+    .summary{padding:28px 0}
+    .summary-grid{display:grid;grid-template-columns:2fr 1fr;gap:30px;align-items:start}
+    .card{background:var(--panel);padding:22px;border-radius:6px;box-shadow:0 6px 30px rgba(0,0,0,0.03)}
+    .summary h3{font-family:'Montserrat',sans-serif;letter-spacing:3px;color:var(--accent-dark);}
+    .summary p{color:var(--subtext);line-height:1.6}
+
+    /* small labeled blocks */
+    .info-row{display:flex;gap:10px;margin-top:14px}
+    .info-col{flex:1}
+    .info-title{font-weight:700;color:var(--accent-dark);margin-bottom:6px}
+    .info-text{color:var(--subtext);font-size:14px}
+
+    /* ---------------------------------------------
+       ACHIEVEMENTS
+       --------------------------------------------- */
+    .achievements{padding:28px 0}
+    .achievements .panel{display:flex;gap:20px;align-items:center;justify-content:space-between;padding:30px;border-radius:6px;background:linear-gradient(180deg,#fff,#fbfbfb)}
+    .stat{flex:1;text-align:center;padding:12px}
+    .stat-number{font-family:'Montserrat',sans-serif;font-size:34px;color:var(--accent-dark);}
+    .stat-label{font-size:12px;color:var(--subtext);letter-spacing:1px}
+
+    /* ---------------------------------------------
+       LATEST WORK / GALLERY
+       --------------------------------------------- */
+    .work{padding:28px 0}
+    .grid-work{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .work-card{background:var(--panel);border-radius:6px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.05);transition:transform .28s ease}
+    .work-card:hover{transform:translateY(-8px)}
+    .work-card img{width:100%;display:block;height:160px;object-fit:cover}
+    .work-meta{padding:10px 12px;display:flex;justify-content:space-between;align-items:center}
+    .meta-title{font-weight:700;font-size:14px}
+    .meta-likes{color:var(--subtext);font-size:13px}
+
+    /* ---------------------------------------------
+       SKILLS
+       --------------------------------------------- */
+    .skills{padding:36px 0;background:linear-gradient(180deg,rgba(255,255,255,0.9),transparent)}
+    .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+
+    /* Left: horizontal bars */
+    .bars{padding:12px}
+    .bar{margin-bottom:18px}
+    .bar .bar-title{display:flex;justify-content:space-between;font-weight:600;margin-bottom:8px}
+    .progress{height:10px;background:#eee;border-radius:6px;overflow:hidden}
+    .progress-inner{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:6px}
+
+    /* Right: circular progress (SVG) */
+    .circles{display:flex;gap:22px;align-items:center}
+    .circle{width:110px;height:110px;display:flex;flex-direction:column;align-items:center}
+    .circle svg{transform:rotate(-90deg)}
+    .circle .label{font-size:13px;margin-top:8px;color:var(--subtext)}
+
+    /* ---------------------------------------------
+       CTA / CONTACT
+       --------------------------------------------- */
+    .cta-block{padding:44px 0;text-align:center}
+    .cta-block h2{font-family:'Montserrat',sans-serif;letter-spacing:3px;color:var(--accent-dark);margin-bottom:6px}
+    .cta-block p{color:var(--subtext);margin-bottom:18px}
+
+    .contact{background:var(--accent-dark);color:white;padding:36px 0}
+    .contact .form{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .contact input,.contact textarea{padding:10px;border-radius:3px;border:0;font-size:14px}
+    .contact input{height:40px}
+    .contact textarea{grid-column:1/3;height:110px;padding:12px}
+    .contact .send{background:var(--muted);color:white;padding:10px 16px;border-radius:3px;border:0;cursor:pointer}
+
+    footer{padding:26px 0;text-align:center;color:var(--subtext)}
+
+    /* ---------------------------------------------
+       Responsive adjustments
+       --------------------------------------------- */
+    @media (max-width:1000px){
+      .hero-grid{grid-template-columns:1fr 360px}
+      .work-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:880px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-right{order:2}
+      .hero-left{order:1}
+      .grid-work{grid-template-columns:repeat(2,1fr)}
+      .summary-grid{grid-template-columns:1fr}
+      .skills-grid{grid-template-columns:1fr}
+      .contact .form{grid-template-columns:1fr}
+      .contact textarea{grid-column:auto}
+    }
+    @media (max-width:480px){
+      .hero-title{font-size:28px}
+      nav ul{display:none}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo">B.E</div>
+        <div>
+          <div style="font-weight:800">PROFILE</div>
+          <div style="font-size:11px;color:var(--subtext);margin-top:2px">Personal landing / portfolio</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a class="cta" href="#contact">Contact Me</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <div class="eyebrow">HELLO</div>
+          <h1 class="hero-title">MY NAME IS <br><span style="color:var(--accent);">MERRY WHITE</span></h1>
+          <p class="hero-sub">Lorem ipsum dolor sit amet consectetur adipiscing elitedni — a short intro blurb that explains who you are and what you do. Keep this short and friendly so visitors immediately get a sense of you.</p>
+          <a class="btn" href="#about">ABOUT ME</a>
+
+          <div class="divider"></div>
+
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="background:var(--panel);padding:14px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.03);min-width:120px;text-align:center">
+              <div style="font-weight:800;color:var(--accent-dark);font-size:20px">142</div>
+              <div style="font-size:12px;color:var(--subtext);letter-spacing:1px">articles</div>
+            </div>
+
+            <div style="background:var(--panel);padding:14px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.03);min-width:120px;text-align:center">
+              <div style="font-weight:800;color:var(--accent-dark);font-size:20px">89</div>
+              <div style="font-size:12px;color:var(--subtext);letter-spacing:1px">projects</div>
+            </div>
+
+            <div style="background:var(--panel);padding:14px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.03);min-width:120px;text-align:center">
+              <div style="font-weight:800;color:var(--accent-dark);font-size:20px">7</div>
+              <div style="font-size:12px;color:var(--subtext);letter-spacing:1px">years of experience</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <!-- Provided hero image is referenced from the environment container path -->
+          <img class="hero-photo" src="/mnt/data/6644df4a-788e-46d7-8388-a1258b78c86b.png" alt="Merry White portrait">
+          <div class="floating-cta">700+ <small style="opacity:.85">websites</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMARY / ABOUT -->
+    <section id="about" class="summary container">
+      <h3>SUMMARY ABOUT ME</h3>
+      <div class="summary-grid" style="margin-top:12px">
+        <div>
+          <div class="card">
+            <p><strong style="background:var(--accent);color:white;padding:6px 8px;border-radius:4px;margin-right:10px">L</strong>nsert your content here — lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div class="info-row">
+              <div class="info-col">
+                <div class="info-title">MY EDUCATION</div>
+                <div class="info-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</div>
+              </div>
+              <div class="info-col">
+                <div class="info-title">MY CAREER</div>
+                <div class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <h4 style="margin:0 0 8px 0">Contact</h4>
+            <p style="margin:0;font-size:14px;color:var(--subtext)">Lets meet and talk — Call me <strong style="color:var(--accent-dark)">+34 004 555 043</strong></p>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <a class="btn" href="#contact">Send me an email</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS (stat row) -->
+    <section id="achievements" class="achievements container">
+      <div class="panel">
+        <div class="stat">
+          <div class="stat-number" data-target="142">0</div>
+          <div class="stat-label">articles</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="89">0</div>
+          <div class="stat-label">projects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="7">0</div>
+          <div class="stat-label">years of experience</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY LATEST WORK -->
+    <section id="work" class="work container">
+      <h3>MY LATEST WORK</h3>
+      <p style="color:var(--subtext)">A few of my recent projects and works. Click to view details.</p>
+
+      <div class="grid-work" style="margin-top:18px">
+        <div class="work-card">
+          <img src="/mnt/data/6644df4a-788e-46d7-8388-a1258b78c86b.png" alt="work 1">
+          <div class="work-meta">
+            <div class="meta-title">Aliquam eratac</div>
+            <div class="meta-likes"><i class="fas fa-heart"></i> 517</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <img src="/mnt/data/6644df4a-788e-46d7-8388-a1258b78c86b.png" alt="work 2">
+          <div class="work-meta">
+            <div class="meta-title">Quisque lorem tortor</div>
+            <div class="meta-likes"><i class="fas fa-heart"></i> 544</div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <img src="/mnt/data/6644df4a-788e-46d7-8388-a1258b78c86b.png" alt="work 3">
+          <div class="work-meta">
+            <div class="meta-title">Curabitur et ligula</div>
+            <div class="meta-likes"><i class="fas fa-heart"></i> 444</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="skills container">
+      <h3>ABOUT MY SKILLS</h3>
+      <div class="skills-grid" style="margin-top:18px">
+        <div class="bars card">
+          <h4 style="margin-top:0">COMPUTER</h4>
+          <div class="bar">
+            <div class="bar-title"><span>Aliquam sed</span><span>90%</span></div>
+            <div class="progress"><div class="progress-inner" data-width="90"></div></div>
+          </div>
+
+          <div class="bar">
+            <div class="bar-title"><span>Lorereet ligula</span><span>72%</span></div>
+            <div class="progress"><div class="progress-inner" data-width="72"></div></div>
+          </div>
+
+          <div class="bar">
+            <div class="bar-title"><span>Convallis purus</span><span>62%</span></div>
+            <div class="progress"><div class="progress-inner" data-width="62"></div></div>
+          </div>
+
+          <h4 style="margin-top:18px">OTHER</h4>
+          <ul style="color:var(--subtext);padding-left:18px;margin-top:8px">
+            <li>Quisque consectetur dictum mauris id consequat</li>
+            <li>Suspenseisse a pellentesque dui, non felis</li>
+            <li>Nulla ipsum dolor lacus, suscipit adipiscing</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h4 style="margin-top:0">COMMUNICATION</h4>
+          <div style="display:flex;gap:12px;margin-top:12px">
+            <!-- Circle 70% -->
+            <div class="circle">
+              <svg width="110" height="110">
+                <circle r="48" cx="55" cy="55" stroke="#eee" stroke-width="10" fill="none"></circle>
+                <circle class="progress-ring" r="48" cx="55" cy="55" stroke="var(--accent)" stroke-width="10" stroke-linecap="round" fill="none" data-percent="70"></circle>
+                <text x="55" y="60" text-anchor="middle" font-size="18" fill="var(--accent-dark)" font-family="Montserrat">70%</text>
+              </svg>
+              <div class="label">Aliquam erat</div>
+            </div>
+
+            <!-- Circle 82% -->
+            <div class="circle">
+              <svg width="110" height="110">
+                <circle r="48" cx="55" cy="55" stroke="#eee" stroke-width="10" fill="none"></circle>
+                <circle class="progress-ring" r="48" cx="55" cy="55" stroke="var(--accent-dark)" stroke-width="10" stroke-linecap="round" fill="none" data-percent="82"></circle>
+                <text x="55" y="60" text-anchor="middle" font-size="18" fill="var(--accent-dark)" font-family="Montserrat">82%</text>
+              </svg>
+              <div class="label">Curabitur ipsum</div>
+            </div>
+
+            <!-- Circle 55% -->
+            <div class="circle">
+              <svg width="110" height="110">
+                <circle r="48" cx="55" cy="55" stroke="#eee" stroke-width="10" fill="none"></circle>
+                <circle class="progress-ring" r="48" cx="55" cy="55" stroke="var(--accent)" stroke-width="10" stroke-linecap="round" fill="none" data-percent="55"></circle>
+                <text x="55" y="60" text-anchor="middle" font-size="18" fill="var(--accent-dark)" font-family="Montserrat">55%</text>
+              </svg>
+              <div class="label">Tincidunt mauris</div>
+            </div>
+
+            <!-- Circle 42% -->
+            <div class="circle">
+              <svg width="110" height="110">
+                <circle r="48" cx="55" cy="55" stroke="#eee" stroke-width="10" fill="none"></circle>
+                <circle class="progress-ring" r="48" cx="55" cy="55" stroke="var(--accent-dark)" stroke-width="10" stroke-linecap="round" fill="none" data-percent="42"></circle>
+                <text x="55" y="60" text-anchor="middle" font-size="18" fill="var(--accent-dark)" font-family="Montserrat">42%</text>
+              </svg>
+              <div class="label">Tincidunt mauris</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-block container">
+      <h2>LETS MEET AND TALK</h2>
+      <p>CALL ME <strong style="letter-spacing:2px;color:var(--accent-dark)">+34 004 555 043</strong></p>
+      <a class="btn" href="#contact">Send me an email</a>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h3 style="color:white;text-align:center;margin-bottom:16px">SEND A MESSAGE</h3>
+        <form class="form" onsubmit="return false;">
+          <input type="text" id="name" placeholder="Your name" required>
+          <input type="email" id="email" placeholder="Your e-mail" required>
+          <input type="text" id="subject" placeholder="Subject">
+          <textarea id="message" placeholder="Message" required></textarea>
+          <div style="grid-column:1/3;text-align:center;margin-top:6px">
+            <button class="send" id="sendBtn">Send a message</button>
+            <div id="formMessage" style="margin-top:8px;color:#fff;opacity:0.9"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="padding:18px 0;">© 2025 Betheme by Muffin group | All Rights Reserved | Powered by WordPress</div>
+      <div style="display:flex;gap:12px;justify-content:center;color:var(--subtext)">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-google"></i>
+        <i class="fab fa-pinterest"></i>
+        <i class="fab fa-linkedin"></i>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ---------------------------------------------
+       JavaScript for interactions + animations
+       --------------------------------------------- -->
+  <script>
+    // Smooth nav active state on click
+    document.querySelectorAll('nav a').forEach(a=>{
+      a.addEventListener('click', e=>{
+        document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
+        a.classList.add('active');
+      })
+    })
+
+    // Count up when visible
+    function animateCounters(){
+      const counters = document.querySelectorAll('.stat-number');
+      counters.forEach(counter=>{
+        const target = +counter.dataset.target;
+        let current = 0;
+        const step = Math.max(1, Math.floor(target/60));
+        const timer = setInterval(()=>{
+          current += step;
+          if(current >= target){ counter.textContent = target; clearInterval(timer);} else { counter.textContent = current; }
+        },18);
+      })
+    }
+
+    // Animate progress bars
+    function animateBars(){
+      document.querySelectorAll('.progress-inner').forEach(el=>{
+        const w = +el.dataset.width;
+        el.style.width = w + '%';
+      })
+    }
+
+    // Animate SVG circle progress
+    function animateRings(){
+      document.querySelectorAll('.progress-ring').forEach(r=>{
+        const radius = r.getAttribute('r');
+        const percent = +r.dataset.percent;
+        const circumference = 2 * Math.PI * radius;
+        r.style.strokeDasharray = circumference;
+        r.style.strokeDashoffset = circumference;
+        // animate
+        setTimeout(()=>{
+          const offset = circumference - (percent/100) * circumference;
+          r.style.transition = 'stroke-dashoffset 1.2s ease-out';
+          r.style.strokeDashoffset = offset;
+        },200);
+      })
+    }
+
+    // IntersectionObserver to trigger animations when sections enter viewport
+    const obs = new IntersectionObserver((entries, observer)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          if(entry.target.id === 'achievements') animateCounters();
+          if(entry.target.id === 'skills') { animateBars(); animateRings(); }
+          observer.unobserve(entry.target);
+        }
+      })
+    },{threshold:0.25});
+
+    document.querySelectorAll('#achievements, #skills').forEach(s=>obs.observe(s));
+
+    // Contact form behaviour (simple client-side validation)
+    document.getElementById('sendBtn').addEventListener('click', ()=>{
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const fm = document.getElementById('formMessage');
+      if(!name||!email||!message){ fm.textContent = 'Please fill in name, email and message.'; fm.style.color='rgba(255,200,200,0.95)'; return; }
+      // pretend to send
+      fm.style.color='lightgreen'; fm.textContent = 'Message sent — thank you!';
+      // clear fields
+      document.getElementById('name').value=''; document.getElementById('email').value=''; document.getElementById('subject').value=''; document.getElementById('message').value='';
+    });
+
+    // Make nav highlight when scrolling between sections
+    const sections = document.querySelectorAll('main section[id]');
+    window.addEventListener('scroll', ()=>{
+      let currentId = '';
+      sections.forEach(sec=>{
+        const rect = sec.getBoundingClientRect();
+        if(rect.top <= 80 && rect.bottom >= 80){ currentId = sec.id; }
+      });
+      if(currentId){
+        document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+        const act = document.querySelector('nav a[href="#'+currentId+'"]');
+        if(act) act.classList.add('active');
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zynova Navbar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #01212B;
+            color: white;
+        }
+
+        .navbar {
+            background-color: #f8f9e7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #01212B;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a.active {
+            color: #b4d20a;
+            font-weight: bold;
+        }
+
+
+        .nav-links a:hover {
+            color: #b4d20a;
+        }
+
+        .btn {
+            background-color: #01212B;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px #b4d20a;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #b4d20a;
+            color: #01212B;
+            box-shadow: 0 0 20px #b4d20a;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 50px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #b4d20a;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #d6d6d6;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Asset 2-8 (2).png" alt="Zynova Logo"> ZYNOVA
+        </div>
+
+        <div class="nav-links">
+            <a href="#" class="hover">Home</a>
+            <a href="#" class="hover">About Us</a>
+            <a href="#" class="hover">Services</a>
+            <a href="#" class="hover">Businesses We Serve</a>
+            <a href="#" class="hover">Contact Us</a>
+        </div>
+
+        <button class="btn">Book a FREE Discovery Call</button>
+    </nav>
+
+    <section class="hero">
+        <h1>Have a Project <br> <span>IN YOUR MIND</span></h1>
+        <p>
+            Simplify your digital journey, ignite innovation, and transform your vision into impactful
+            solutions. Achieve more with Zynova!
+        </p>
+    </section>
+
+</body>
+
+</html>

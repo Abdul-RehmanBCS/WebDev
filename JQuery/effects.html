@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effects</title>
+</head>
+<style>
+    #show-pane{
+        background-color: grey;
+        color: white;
+        font-size: large;
+        width: 100%;
+        padding: 20px 0;
+    }
+    #content-container{
+        background: grey;
+        margin-top: 0;
+        padding: 0;
+        /* border: 2px solid red; */
+        padding: 20px;
+    }
+    #content{
+        padding: 0;
+        margin: 0;
+    }
+</style>
+<body>
+    <button id="show-pane">Click to Show/Hide panel</button>
+    <div id="content-container">
+        <p id="content"> 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet officiis vero hic excepturi rem neque, saepe deleniti beatae magni quo, debitis mollitia culpa cum autem maiores, quis similique ut molestias.
+        </p>
+    </div>
+</body>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#show-pane").click(function(){
+            $("#content-container").slideToggle()
+        }
+    )
+    })
+</script>
+</html>

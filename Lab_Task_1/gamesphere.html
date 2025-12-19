@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GameSphere — Ultimate Gaming Experience</title>
+    <meta
+      name="description"
+      content="Discover the latest gaming consoles, accessories, and VR. Join our community of passionate gamers."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #ff3c78;
+        --secondary: #2a2a72;
+        --accent: #00d4ff;
+        --dark: #121212;
+        --light: #f8f9fa;
+        --text: #e6e6e6;
+        --space-1: 0.5rem;
+        --space-2: 1rem;
+        --space-3: 1.5rem;
+        --space-4: 2rem;
+        --space-5: 3rem;
+        --radius: 16px;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html:focus-within {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--light);
+        background: linear-gradient(135deg, #0f0f1b 0%, #1a1a2e 100%);
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(1200px, 92%);
+        margin-inline: auto;
+      }
+      .btn {
+        display: inline-block;
+        border: none;
+        border-radius: 999px;
+        padding: 0.75rem 1.25rem;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: 0.2s transform, 0.2s box-shadow;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+      .btn-primary:hover,
+      .btn-primary:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(255, 60, 120, 0.35);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--light);
+        border: 2px solid var(--accent);
+      }
+      .btn-outline:hover,
+      .btn-outline:focus {
+        background: var(--accent);
+        color: #000;
+      }
+      a:focus,
+      button:focus,
+      input:focus,
+      textarea:focus {
+        outline: 3px solid #ffd166;
+        outline-offset: 2px;
+      }
+
+      /* Header */
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      .skip-link:focus {
+        position: fixed;
+        left: 1rem;
+        top: 1rem;
+        width: auto;
+        height: auto;
+        background: #000;
+        color: #fff;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        z-index: 1000;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(18, 18, 18, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.9rem 0;
+      }
+      .logo {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 1.25rem;
+      }
+      .logo span {
+        color: var(--accent);
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+      }
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        position: relative;
+        padding: 0.25rem 0;
+      }
+      nav a:hover::after {
+        width: 100%;
+      }
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        height: 2px;
+        width: 0;
+        background: var(--accent);
+        transition: width 0.2s ease;
+      }
+      .nav-actions {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+      }
+      .mobile-toggle {
+        display: none;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        padding: 0.4rem 0.6rem;
+      }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-height: 80vh;
+        overflow: hidden;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
+          url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2070&q=80")
+            center/cover no-repeat;
+        z-index: -1;
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 3vw + 1rem, 3.5rem);
+        line-height: 1.15;
+        margin: 0 0 var(--space-2);
+      }
+      .hero h1 span {
+        color: var(--accent);
+      }
+      .hero p {
+        max-width: 60ch;
+        opacity: 0.9;
+        margin: 0 0 var(--space-3);
+      }
+      .hero-btns {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      /* Products */
+      .section {
+        padding: var(--space-5) 0;
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: var(--space-4);
+      }
+      .section-header h2 {
+        font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.4rem);
+        margin: 0 0 0.5rem;
+        display: inline-block;
+        position: relative;
+      }
+      .section-header h2::after {
+        content: "";
+        position: absolute;
+        left: 20%;
+        bottom: -10px;
+        width: 60%;
+        height: 3px;
+        background: var(--primary);
+      }
+      .section-header p {
+        max-width: 60ch;
+        margin: 0 auto;
+        opacity: 0.85;
+      }
+      .product-grid {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+      .product-card {
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
+      }
+      .product-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+      .product-info {
+        padding: 1rem;
+      }
+      .product-info h3 {
+        margin: 0.25rem 0 0.5rem;
+      }
+      .product-info p {
+        opacity: 0.85;
+        min-height: 3.5rem;
+        margin: 0 0 0.75rem;
+      }
+      .product-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .price {
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      /* About */
+      .about {
+        background: rgba(0, 0, 0, 0.25);
+      }
+      .about-grid {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+      .about-image {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      }
+      .about-image img {
+        transition: transform 0.4s ease;
+      }
+      .about-image:hover img {
+        transform: scale(1.04);
+      }
+
+      /* Footer */
+      .footer {
+        background: #0a0a14;
+        padding: var(--space-5) 0 var(--space-2);
+      }
+      .footer-grid {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .footer h3 {
+        color: var(--accent);
+      }
+      .footer a {
+        color: #bbb;
+        text-decoration: none;
+      }
+      .footer a:hover {
+        color: var(--accent);
+      }
+      .social {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 0.75rem;
+      }
+      .social a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        transition: 0.2s;
+      }
+      .social a:hover {
+        background: var(--accent);
+        color: #000;
+        transform: translateY(-2px);
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: var(--space-3);
+        padding-top: var(--space-2);
+        color: #aaa;
+        text-align: center;
+      }
+
+      /* Mobile */
+      @media (max-width: 900px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 720px) {
+        .mobile-toggle {
+          display: inline-block;
+        }
+        nav {
+          position: fixed;
+          inset: 64px 0 auto 0;
+          transform: translateY(-120%);
+          transition: transform 0.2s ease;
+          background: rgba(18, 18, 18, 0.95);
+          backdrop-filter: blur(10px);
+        }
+        nav.open {
+          transform: translateY(0);
+        }
+        nav ul {
+          flex-direction: column;
+          gap: 0;
+          padding: 1rem 0;
+        }
+        nav a {
+          display: block;
+          padding: 1rem 1.25rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+      }
+
+      /* Cursor circle, disabled for reduced motion */
+      #cursor-circle {
+        position: fixed;
+        inset: auto;
+        pointer-events: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--accent);
+        mix-blend-mode: difference;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        opacity: 0.85;
+        transition: transform 0.1s ease;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #cursor-circle {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#products">Skip to products</a>
+    <div id="cursor-circle" aria-hidden="true"></div>
+
+    <header role="banner">
+      <div class="container nav">
+        <a class="logo" href="#home" aria-label="GameSphere home"
+          ><i class="fas fa-gamepad" aria-hidden="true"></i>Game<span
+            >Sphere</span
+          ></a
+        >
+        <button
+          class="mobile-toggle"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+        <nav id="primary-nav" role="navigation" aria-label="Primary">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-outline" href="#">Login</a>
+          <a class="btn btn-primary" href="#">Sign Up</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="container">
+          <div class="hero-content">
+            <h1 id="hero-heading">
+              Level Up Your <span>Gaming Experience</span>
+            </h1>
+            <p>
+              Discover the latest gaming consoles, accessories, and immersive VR
+              technology. Join our community of passionate gamers today.
+            </p>
+            <div class="hero-btns">
+              <a class="btn btn-primary" href="#products">Explore Products</a>
+              <a class="btn btn-outline" href="#about">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="products" aria-labelledby="products-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="products-heading">Featured Products</h2>
+            <p>
+              From cutting-edge consoles to immersive accessories, we have
+              everything a gamer needs.
+            </p>
+          </div>
+
+          <div class="product-grid">
+            <article class="product-card" data-product="ps5">
+              <img
+                src="https://images.unsplash.com/photo-1606813902912-7b04c798d3b0?auto=format&fit=crop&w=1200&q=80"
+                alt="PlayStation 5 console on a desk"
+              />
+              <div class="product-info">
+                <h3>PlayStation 5</h3>
+                <p>
+                  Next‑gen gaming console with ultra‑fast SSD and adaptive
+                  triggers.
+                </p>
+                <div class="product-price">
+                  <div class="price">$499.99</div>
+                  <a
+                    class="btn btn-primary btn-small"
+                    href="checkout.html"
+                    data-title="PlayStation 5"
+                    data-price="$499.99"
+                    data-image="https://images.unsplash.com/photo-1606813902912-7b04c798d3b0?auto=format&fit=crop&w=600&q=80"
+                    data-desc="Next‑gen gaming console with ultra‑fast SSD and adaptive triggers."
+                    >Buy Now</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-product="xbox">
+              <img
+                src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1200&q=80"
+                alt="Xbox Series X console with controller"
+              />
+              <div class="product-info">
+                <h3>Xbox Series X</h3>
+                <p>
+                  Powerful gaming console supporting 4K resolution and fast
+                  performance.
+                </p>
+                <div class="product-price">
+                  <div class="price">$499.99</div>
+                  <a
+                    class="btn btn-primary btn-small"
+                    href="checkout.html"
+                    data-title="Xbox Series X"
+                    data-price="$499.99"
+                    data-image="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=600&q=80"
+                    data-desc="Powerful 4K gaming with fast performance and stunning visuals."
+                    >Buy Now</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-product="quest2">
+              <img
+                src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=1200&q=80"
+                alt="Oculus Quest 2 VR headset"
+              />
+              <div class="product-info">
+                <h3>Oculus Quest 2</h3>
+                <p>
+                  All‑in‑one VR headset offering an immersive virtual reality
+                  experience.
+                </p>
+                <div class="product-price">
+                  <div class="price">$299.99</div>
+                  <a
+                    class="btn btn-primary btn-small"
+                    href="checkout.html"
+                    data-title="Oculus Quest 2"
+                    data-price="$299.99"
+                    data-image="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=600&q=80"
+                    data-desc="All‑in‑one VR headset with crisp visuals and intuitive controls."
+                    >Buy Now</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-product="switch">
+              <img
+                src="https://images.unsplash.com/photo-1585079542156-2755d9c8affd?auto=format&fit=crop&w=1200&q=80"
+                alt="Nintendo Switch console with Joy‑Con"
+              />
+              <div class="product-info">
+                <h3>Nintendo Switch</h3>
+                <p>
+                  Play anytime, anywhere—solo or with friends—with flexible
+                  gaming options.
+                </p>
+                <div class="product-price">
+                  <div class="price">$299.99</div>
+                  <a
+                    class="btn btn-primary btn-small"
+                    href="checkout.html"
+                    data-title="Nintendo Switch"
+                    data-price="$299.99"
+                    data-image="https://images.unsplash.com/photo-1585079542156-2755d9c8affd?auto=format&fit=crop&w=600&q=80"
+                    data-desc="Hybrid console for home and handheld play with multiplayer fun."
+                    >Buy Now</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="about section" id="about" aria-labelledby="about-heading">
+        <div class="container about-grid">
+          <div class="about-text">
+            <h2 id="about-heading">Our Gaming Journey</h2>
+            <p>
+              Founded by passionate gamers, GameSphere started as a small local
+              shop and has grown into a premier destination for gaming
+              enthusiasts worldwide.
+            </p>
+            <p>
+              We believe that gaming is more than entertainment—it connects
+              people, challenges us, and tells incredible stories.
+            </p>
+            <p>
+              Every product is carefully selected for quality, performance, and
+              value.
+            </p>
+            <a class="btn btn-primary" href="#contact">Get in Touch</a>
+          </div>
+          <div class="about-image">
+            <img
+              src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=2071&q=80"
+              alt="Our gaming community playing together"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contact" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <section>
+            <h3>GameSphere</h3>
+            <p>Your ultimate destination for gaming gear and community.</p>
+            <div class="social" aria-label="Social links">
+              <a href="#" aria-label="Twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" aria-label="Discord"
+                ><i class="fab fa-discord"></i
+              ></a>
+            </div>
+          </section>
+          <section>
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </section>
+          <section>
+            <h3>Products</h3>
+            <ul>
+              <li><a href="#products">Gaming Consoles</a></li>
+              <li><a href="#products">Virtual Reality</a></li>
+              <li><a href="#products">Accessories</a></li>
+              <li><a href="#products">Games</a></li>
+            </ul>
+          </section>
+          <section>
+            <h3>Contact Us</h3>
+            <ul>
+              <li>
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i> 123
+                Gaming Street, Tech City
+              </li>
+              <li>
+                <i class="fas fa-phone" aria-hidden="true"></i> +1 (555)
+                123-4567
+              </li>
+              <li>
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                info@gamesphere.com
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="footer-bottom">© 2025 GameSphere. All rights reserved.</div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile nav
+      const navBtn = document.querySelector(".mobile-toggle");
+      const nav = document.getElementById("primary-nav");
+      if (navBtn && nav) {
+        function setOpen(open) {
+          nav.classList.toggle("open", open);
+          navBtn.setAttribute("aria-expanded", String(open));
+        }
+        let open = false;
+        navBtn.addEventListener("click", () => {
+          open = !open;
+          setOpen(open);
+        });
+        nav.querySelectorAll("a").forEach((a) =>
+          a.addEventListener("click", () => {
+            open = false;
+            setOpen(false);
+          })
+        );
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && open) {
+            open = false;
+            setOpen(false);
+            navBtn.focus();
+          }
+        });
+      }
+
+      // Cursor effect (respects reduced motion)
+      const cursor = document.getElementById("cursor-circle");
+      if (cursor) {
+        document.addEventListener("mousemove", (e) => {
+          cursor.style.left = e.clientX + "px";
+          cursor.style.top = e.clientY + "px";
+        });
+      }
+
+      // Persist product selection for checkout page
+      document.querySelectorAll(".btn-small").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const data = {
+            title: btn.dataset.title,
+            price: btn.dataset.price,
+            image: btn.dataset.image,
+            desc: btn.dataset.desc,
+          };
+          try {
+            localStorage.setItem("checkoutProduct", JSON.stringify(data));
+          } catch (e) {}
+        });
+      });
+    </script>
+  </body>
+</html>
