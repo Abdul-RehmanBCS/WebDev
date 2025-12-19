@@ -1,0 +1,114 @@
+<%- include('partials/header', { title: 'Your One-Stop Shopping Destination' }) %>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Welcome to TechMart</h1>
+                    <p class="hero-subtitle">Discover amazing products at unbeatable prices. Your shopping journey starts here.</p>
+                    <a href="/products" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features/Services Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title">Why Choose TechMart?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚚</div>
+                        <h3>Free Shipping</h3>
+                        <p>Free shipping on orders over $50. Fast and reliable delivery to your doorstep.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Secure Payment</h3>
+                        <p>Your payment information is encrypted and secure. Shop with confidence.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">↩️</div>
+                        <h3>Easy Returns</h3>
+                        <p>30-day return policy. If you're not satisfied, return it hassle-free.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⭐</div>
+                        <h3>Quality Products</h3>
+                        <p>We source only the best products from trusted suppliers worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Preview Section -->
+        <section id="products" class="products-preview">
+            <div class="container">
+                <h2 class="section-title">Featured Products</h2>
+                <% if (typeof featuredProducts !== 'undefined' && featuredProducts.length > 0) { %>
+                <div class="products-grid">
+                    <% featuredProducts.forEach(product => { %>
+                    <div class="product-card">
+                        <a href="/products/<%= product._id %>">
+                            <div class="product-image">
+                                <img src="<%= product.image %>" alt="<%= product.name %>">
+                            </div>
+                        </a>
+                        <div class="product-info">
+                            <h3><a href="/products/<%= product._id %>" class="product-link"><%= product.name %></a></h3>
+                            <p class="product-price">$<%= product.price.toFixed(2) %></p>
+                            <a href="/products/<%= product._id %>" class="btn btn-primary btn-sm mt-2">View Details</a>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+                <% } else { %>
+                <div class="text-center py-4">
+                    <p class="text-muted">No products available yet.</p>
+                </div>
+                <% } %>
+                <div class="text-center">
+                    <a href="/products" class="btn btn-secondary">View All Products</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"TechMart has the best customer service and fastest delivery. Highly recommended!"</p>
+                        <p class="testimonial-author">- Sarah Johnson</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"Great quality products at affordable prices. I shop here regularly now."</p>
+                        <p class="testimonial-author">- Michael Chen</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"The return process was so easy. This is how online shopping should be!"</p>
+                        <p class="testimonial-author">- Emily Davis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secondary CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Start Shopping?</h2>
+                    <p>Join thousands of satisfied customers and discover amazing deals today.</p>
+                    <a href="/checkout" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<%- include('partials/footer') %>
+

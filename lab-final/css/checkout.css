@@ -1,0 +1,89 @@
+/* Checkout Page Styles */
+.progress-header {
+    padding: 1rem 0;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.step-number.completed {
+    background-color: #28a745;
+    color: white;
+}
+
+.step-number.active {
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+.step-label {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.progress-line {
+    flex: 1;
+    height: 2px;
+    background-color: #e9ecef;
+    margin: 0 1rem;
+    margin-top: -21px;
+    z-index: -1;
+}
+
+.progress-line.completed {
+    background-color: #28a745;
+}
+
+.card {
+    border: 1px solid #dee2e6;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem 1.5rem;
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#placeOrderBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 767.98px) {
+    .position-sticky {
+        position: relative !important;
+        top: 0 !important;
+    }
+}
+

@@ -1,0 +1,12 @@
+<%- include('partials/header', { title: 'Error' }) %>
+
+    <main class="py-5">
+        <div class="container text-center">
+            <h1 class="display-1">Oops!</h1>
+            <p class="lead"><%= typeof message !== 'undefined' ? message : 'Something went wrong' %></p>
+            <a href="/" class="btn btn-primary">Go Home</a>
+        </div>
+    </main>
+
+<%- include('partials/footer') %>
+
