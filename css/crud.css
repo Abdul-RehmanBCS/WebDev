@@ -1,0 +1,22 @@
+/* CRUD App Styles */
+.table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.btn-action {
+    margin: 0 2px;
+}
+
+#productsTableBody tr {
+    transition: background-color 0.2s ease;
+}
+
+#productsTableBody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.toast {
+    min-width: 300px;
+}
+
